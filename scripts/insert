@@ -26,7 +26,19 @@ parser.add_argument('--debug', action='store_true',
 
 args = parser.parse_args()
 
-PATH = 'C://devkitPro//devkitARM//bin'
+PathVar = os.environ.get('Path')
+Paths = PathVar.split(';')
+PATH = ""
+for candidatePath in Paths:
+    if "devkitARM" in candidatePath:
+        PATH = candidatePath
+        break
+if PATH == "":
+	PATH = 'C://devkitPro//devkitARM//bin'
+	if os.path.isdir(PATH) == False:
+		print('Devkit not found.')
+		sys.exit(1)
+
 PREFIX = 'arm-none-eabi-'
 OBJCOPY = os.path.join(PATH, PREFIX + 'objcopy')
 OBJDUMP = os.path.join(PATH, PREFIX + 'objdump')

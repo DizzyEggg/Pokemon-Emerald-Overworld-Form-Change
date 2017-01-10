@@ -1,3 +1,9 @@
+/*variables*/
+var_8003 = 0x20375DE;
+var_8004 = 0x20375E0;
+var_8005 = 0x20375E2;
+var_8006 = 0x20375E4;
+
 /*battle recording*/
 no_of_recorded_bytes = 0x0203C794;
 battle_record = 0x0203BD34;

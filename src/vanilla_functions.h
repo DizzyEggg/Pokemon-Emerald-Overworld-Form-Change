@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+u16 teach_move_in_available_slot(struct pokemon* , u16 move);
 bool bag_add_item(u16 item_id, u8 a);
 char *int_to_str(char *buffer, u8 lvl, u8 a, u8 b);
 u8 get_item_x12_battle_function(u16 item_id);
@@ -25,8 +26,6 @@ u32 get_attributes(struct pokemon* poke_address, u8 request, void* dst);
 void set_attributes(struct pokemon* poke_address, u8 request, void* new_value);
 u8 item_is_mail(u16 itemID);
 u8 get_lvl_from_exp(struct pokemon*);
-u16 teach_move_in_available_slot(struct pokemon* , u16 move);
-void new_move_for_the_first(struct pokemon*, u16 move);
 void task_delete(u8 taskID);
 char* get_player_name_address();
 s8 compare_two_strings(void* string1, void* string2);
