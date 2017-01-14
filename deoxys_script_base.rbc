@@ -1,0 +1,88 @@
+#dynamic 0x9c1000
+
+#org @main
+lock
+msgbox @meteorite_detection_string MSG_KEEPOPEN
+closeonkeypress
+callasm ##find_deoxys
+compare 0x800D 0x0
+if 0x1 goto @finish_deoxys_menu
+compare 0x800D 0x2
+if 0x1 goto @choose_candidate_deoxys
+
+#org @reaction_prompt
+bufferpartypokemon 0x1 0x8004
+msgbox @deoxys_reaction_string MSG_KEEPOPEN
+closeonkeypress
+msgbox @reaction_prompt_string MSG_YESNO
+compare 0x800D 0x0
+callasm ##deoxys_formes_change
+compare 0x800D 0x1
+if 0x1 call @change_to_attack
+compare 0x800D 0x2
+if 0x1 call @change_to_defense
+compare 0x800D 0x3
+if 0x1 call @change_to_speed
+compare 0x800D 0x4
+if 0x1 call @change_to_original
+#org @finish_deoxys_menu
+release
+end
+
+#org @choose_candidate_deoxys
+special 0xA2
+waitstate
+callasm ##check_chosen_deoxys
+compare 0x800D 0x1
+if 0x1 goto @reaction_prompt
+msgbox @not_valid_deoxys_msg MSG_KEEPOPEN
+closeonkeypress
+goto @finish_deoxys_menu
+
+#org @change_to_attack
+msgbox @attack_forme_string MSG_KEEPOPEN
+closeonkeypress
+return
+
+#org @change_to_defense
+msgbox @defense_forme_string MSG_KEEPOPEN
+closeonkeypress
+return
+
+#org @change_to_speed
+msgbox @speed_forme_string MSG_KEEPOPEN
+closeonkeypress
+return
+
+#org @change_to_original
+msgbox @balance_forme_string MSG_KEEPOPEN
+closeonkeypress
+return
+
+'---------
+' Strings
+'---------
+
+#org @meteorite_detection_string
+= It's a meteor that fell from space...
+
+#org @deoxys_reaction_string
+= [Buffer2] is reacting to the meteorite...
+
+#org @reaction_prompt_string
+= Would you like to bring\nthe Deoxys in your party\pcloser to the meteorite?
+
+#org @attack_forme_string
+= [Buffer2] has changed to have\nsuperior stats for attacking!
+
+#org @defense_forme_string
+= [Buffer2] has changed to have\nsuperior stats when defending!
+
+#org @speed_forme_string
+= [Buffer2] has changed to have\nincreased speed!
+
+#org @balance_forme_string
+= [Buffer2] has changed to have\nbalanced stats!
+
+#org @not_valid_deoxys_msg
+= The pokemon does not react\nto the meteor.

@@ -1,18 +1,6 @@
 #include "defines.h"
 
-
-
-#define POKE_ROTOM POKE_TREECKO
-
-enum rotom_forms
-{
-    POKE_ROTOM_HEAT=POKE_FLAREON,
-    POKE_ROTOM_WASH=POKE_VAPOREON,
-    POKE_ROTOM_FROST=POKE_HYPNO,
-    POKE_ROTOM_FAN=POKE_ABRA,
-    POKE_ROTOM_MOW=POKE_AGGRON
-};
-
+//////  DEOXYS
 struct rotom_set
 {
     enum rotom_forms form_index;
@@ -212,4 +200,100 @@ void store_move_to_var8003_from_var8005_in_slot_var8004()
 {
     struct pokemon* poke=&party_player[var_8004];
     var_8003 = get_attributes(poke,ATTR_ATTACK_1+var_8005,0);
+}
+
+
+//////  DEOXYS
+bool is_valid_deoxys(u16 species)
+{
+    bool valid_deoxys=false;
+    switch(species)
+    {
+    case POKE_DEOXYS:
+    case POKE_DEOXYS_ATTACK:
+    case POKE_DEOXYS_DEFENSE:
+    case POKE_DEOXYS_SPEED:
+        valid_deoxys=true;
+    }
+    return valid_deoxys;
+}
+
+void find_deoxys()
+{
+    struct pokemon* poke;
+    u8 count=0;
+    u8 first_slot=0;
+    for(u8 i=0;i<6;i++)
+    {
+        poke = &party_player[i];
+        u16 species = get_attributes(poke,ATTR_SPECIES,0);
+        if(is_valid_deoxys(species))
+        {
+            count++;
+            if(count==1)
+            {
+                first_slot=i;
+            }
+            else if(count==2)
+            {
+                break;
+            }
+        }
+    }
+    switch(count)
+    {
+    case 0:
+        var_800D_lastresult=0;
+        break;
+    case 1:
+        var_800D_lastresult=1;
+        var_8004=first_slot;
+        break;
+    default:
+        var_800D_lastresult=2;
+        break;
+    }
+}
+
+void deoxys_formes_change()
+{
+    u8 i=var_8004;
+    u16 target_species;
+    struct pokemon* poke = &party_player[i];
+    u16 species = get_attributes(poke,ATTR_SPECIES,0);
+    switch(species)
+    {
+    case POKE_DEOXYS:
+        target_species=POKE_DEOXYS_ATTACK;
+        var_800D_lastresult=1;
+        break;
+    case POKE_DEOXYS_ATTACK:
+        target_species=POKE_DEOXYS_DEFENSE;
+        var_800D_lastresult=2;
+        break;
+    case POKE_DEOXYS_DEFENSE:
+        target_species=POKE_DEOXYS_SPEED;
+        var_800D_lastresult=3;
+        break;
+    case POKE_DEOXYS_SPEED:
+        target_species=POKE_DEOXYS;
+        var_800D_lastresult=4;
+        break;
+    }
+    set_attributes(poke,ATTR_SPECIES,&target_species);
+    calculate_stats_pokekmon(poke);
+}
+
+void check_chosen_deoxys()
+{
+    struct pokemon* poke = &party_player[var_8004];
+    u16 species = get_attributes(poke,ATTR_SPECIES,0);
+    if(is_valid_deoxys(species))
+    {
+        var_800D_lastresult=1;
+    }
+    else
+    {
+        var_800D_lastresult=0;
+    }
 }
