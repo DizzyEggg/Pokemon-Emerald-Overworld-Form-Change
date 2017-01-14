@@ -19,42 +19,92 @@ struct rotom_set
     u16 special_move;
 };
 
-struct rotom_set rotom_move_mapping[5] = {{POKE_ROTOM_HEAT,MOVE_OVERHEAT},{POKE_ROTOM_WASH,MOVE_HYDRO_PUMP},
+#define NO_OF_ALTERNATE_ROTOM_FORMS 6
+struct rotom_set rotom_move_mapping[NO_OF_ALTERNATE_ROTOM_FORMS] = {{POKE_ROTOM_HEAT,MOVE_OVERHEAT},{POKE_ROTOM_WASH,MOVE_HYDRO_PUMP},
             {POKE_ROTOM_FROST,MOVE_BLIZZARD},{POKE_ROTOM_FAN,MOVE_AIR_SLASH},{POKE_ROTOM_MOW,MOVE_LEAF_STORM}};
+
+u16 get_rotom_form_special_move(u16 species)
+{
+    u16 special_move=0;
+    for(u8 j=0;j<NO_OF_ALTERNATE_ROTOM_FORMS;j++)
+    {
+        if(species==rotom_move_mapping[j].form_index)
+        {
+            special_move=rotom_move_mapping[j].special_move;
+            break;
+        }
+    }
+    return special_move;
+}
+
+bool is_valid_rotom(u16 species)
+{
+    bool valid_rotom=false;
+    if(species==POKE_ROTOM || get_rotom_form_special_move(species))
+    {
+        valid_rotom=true;
+    }
+    return valid_rotom;
+}
 
 void find_rotom()
 {
+    struct pokemon* poke;
+    u8 count=0;
+    u16 first_index=0x0;
+    u8 first_slot=0;
     for(u8 i=0;i<6;i++)
     {
-        bool valid_rotom=false;
-        struct pokemon* poke = &party_player[i];
+        poke = &party_player[i];
         u16 species = get_attributes(poke,ATTR_SPECIES,0);
-        if(species==POKE_ROTOM)
+        if(is_valid_rotom(species))
         {
-            var_8004=i;
-            break;
-        }
-        else
-        {
-            for(u8 j=0;j<5;j++)
+            count++;
+            if(count==1)
             {
-                if(species==rotom_move_mapping[j].form_index)
-                {
-                    var_8003=rotom_move_mapping[j].special_move;
-                    valid_rotom=true;
-                    break;
-                }
+                first_slot=i;
+                first_index=species;
             }
-            if(valid_rotom)
+            else if(count==2)
             {
-                var_8004=i;
                 break;
             }
         }
     }
+    switch(count)
+    {
+    case 0:
+        var_800D_lastresult=0;
+        break;
+    case 1:
+        var_800D_lastresult=1;
+        var_8004=first_slot;
+        var_8003=get_rotom_form_special_move(first_index);
+        break;
+    default:
+        var_800D_lastresult=2;
+        break;
+
+    }
 }
 
-void rotom_map()
+void check_chosen_rotom()
+{
+    struct pokemon* poke = &party_player[var_8004];
+    u16 species = get_attributes(poke,ATTR_SPECIES,0);
+    if(is_valid_rotom(species))
+    {
+        var_8003=get_rotom_form_special_move(species);
+        var_800D_lastresult=1;
+    }
+    else
+    {
+        var_800D_lastresult=0;
+    }
+}
+
+
+void rotom_change()
 {
     if(var_800D_lastresult==0x5)
     {
@@ -64,10 +114,6 @@ void rotom_map()
     {
         var_8005=rotom_move_mapping[var_800D_lastresult].form_index;
     }
-}
-
-void rotom_change()
-{
     u16 target_species=var_8005;
     u8 move_slot_to_purge=4;
     u16 special_move_to_remove=var_8003;
@@ -132,7 +178,7 @@ void rotom_change()
 }
 
 
-void rotom_determing_special_move()
+void rotom_determine_special_move()
 {
     var_800D_lastresult=0;
     u16 special_move_to_learn=0;
@@ -141,14 +187,7 @@ void rotom_determing_special_move()
     u16 species = get_attributes(poke,ATTR_SPECIES,0);
     if(species!=POKE_ROTOM)
     {
-        for(u8 j=0;j<5;j++)
-        {
-            if(species==rotom_move_mapping[j].form_index)
-            {
-                special_move_to_learn=rotom_move_mapping[j].special_move;
-                break;
-            }
-        }
+        special_move_to_learn=get_rotom_form_special_move(species);
     }
     else
     {
@@ -163,7 +202,7 @@ void rotom_determing_special_move()
     }
 }
 
-void rotom_learn_move()
+void rotom_learn_special_move()
 {
     struct pokemon* poke=&party_player[var_8004];
     teach_move_in_available_slot(poke,var_8006);

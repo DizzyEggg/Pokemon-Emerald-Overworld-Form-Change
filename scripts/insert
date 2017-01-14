@@ -236,8 +236,8 @@ with open(args.output, 'rb+') as rom:
                         offset = int(line[:8],16) - 0x08000000
                         bytereplace(rom, offset, line[9:])
                         
-        if args.debug:
+        with open('offsets.txt', 'w') as fout:
                 width = max(map(len, table.keys())) + 1
                 for key in sorted(table.keys()):
                         fstr = ('{:' + str(width) + '} {:08X}')
-                        print(fstr.format(key + ':', table[key] + 0x08000000))
+                        fout.write(fstr.format(key + ':', table[key] + 0x08000001)+'\n')
