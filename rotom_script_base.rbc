@@ -112,11 +112,10 @@ closeonkeypress
 goto @finish_rotom_menu
 
 #org @choose_candidate_rotom
-special 0x8F
+special 0xA2
 waitstate
-copyvar 0x8004 0x800D
 callasm ##check_chosen_rotom
-compare 0x800D 0x0
+compare 0x800D 0x1
 if 0x1 goto @investigation_prompt
 msgbox @not_valid_rotom_msg MSG_KEEPOPEN
 closeonkeypress
