@@ -1,4 +1,5 @@
 #dynamic 0x9c1000
+#freespace 0xFF
 
 #org @main
 lock

@@ -1,11 +1,12 @@
 #dynamic 0x9c1000
+#freespace 0xFF
 
 '---------------
 #org @main
 lock
 msgbox @appliance_detection_string MSG_KEEPOPEN
 closeonkeypress
-callasm 0x8F0033D
+callasm 0x100033C
 compare 0x800D 0x0
 if 0x1 goto @finish_rotom_menu
 compare 0x800D 0x2
@@ -22,7 +23,7 @@ waitmsg
 multichoice 0xF 0x0 0xD 0x0
 compare 0x800D 0x6
 if 0x1 goto @finish_rotom_menu
-callasm 0x8F00425
+callasm 0x1000424
 compare 0x800D 0x0
 if 0x1 goto @rotom_already_in_motor
 compare 0x800D 0x4
@@ -40,7 +41,7 @@ msgbox @forgot_special_move_string MSG_KEEPOPEN
 closeonkeypress
 
 #org @rotom_learn_special_move
-callasm 0x8F00549
+callasm 0x1000548
 compare 0x8006 0x0
 if 0x1 goto @finish_rotom_menu
 special 0xE2
@@ -48,7 +49,7 @@ compare LASTRESULT 0x4
 if 0x1 goto @rotom_move_delete_prompt
 
 #org @learned_special_move
-callasm 0x8F005A9
+callasm 0x10005A8
 bufferattack 0x2 0x8006
 fanfare 0x101
 msgbox @learn_special_move_string MSG_KEEPOPEN
@@ -70,13 +71,13 @@ compare 0x8005 0x3
 if 0x2 goto @finish_rotom_menu
 msgbox @pff_move_string MSG_KEEPOPEN
 closeonkeypress
-callasm 0x8F005D5
+callasm 0x10005D4
 bufferattack 0x2 0x8003
 special 0xE0
 bufferpartypokemon 0x1 0x8004
 msgbox @forgot_special_move_string MSG_KEEPOPEN
 closeonkeypress
-callasm 0x8F00549
+callasm 0x1000548
 goto @learned_special_move
 
 #org @rotom_already_in_motor
@@ -93,20 +94,20 @@ goto @finish_rotom_menu
 bufferattack 0x2 0x8003
 special 0xE0
 setvar 0x8006 0x0
-callasm 0x8F005A9
+callasm 0x10005A8
 msgbox @left_motor_string MSG_KEEPOPEN
 closeonkeypress
 msgbox @forgot_special_move_string MSG_KEEPOPEN
 closeonkeypress
-callasm 0x8F00549
+callasm 0x1000548
 compare 0x8006 0x0
 if 0x1 @finish_rotom_menu
-callasm 0x8F005A9
+callasm 0x10005A8
 goto @finish_rotom_menu
 
 #org @revert_for_not_learning_new_move
 setvar 0x800D 0x5
-callasm 0x8F00425
+callasm 0x1000424
 msgbox @left_motor_string MSG_KEEPOPEN
 closeonkeypress
 goto @finish_rotom_menu
@@ -114,7 +115,7 @@ goto @finish_rotom_menu
 #org @choose_candidate_rotom
 special 0xA2
 waitstate
-callasm 0x8F003D1
+callasm 0x10003D0
 compare 0x800D 0x1
 if 0x1 goto @investigation_prompt
 msgbox @not_valid_rotom_msg MSG_KEEPOPEN
@@ -152,7 +153,7 @@ goto @finish_rotom_menu
 = [black_fr][buffer2] is trying to\nlearn [buffer3].\pBut, it can't learn\nmore than four moves.\pDelete a move to make\nroom for [buffer3]?
 
 #org @pff_move_string
-= \c\h08Ã®1, \c\h08Ã”2, and\c\h08Ã”[.] \c\h08Ã”[.] \c\h08Ã”[.] \c\h08Ã”\c\h10\h31 Poof!
+= \c\h08î1, \c\h08Ô2, and\c\h08Ô[.] \c\h08Ô[.] \c\h08Ô[.] \c\h08Ô\c\h10\h31 Poof!
 
 #org @already_appliance_string
 = This Rotom has already entered\nthat appliance motor.

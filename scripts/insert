@@ -16,7 +16,7 @@ if sys.version_info < (3, 4):
 # Parse arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--offset', metavar='offset', type=int, 
-                    help='offset to insert at', default=0xF00000)
+                    help='offset to insert at', default=0xF000000)
 parser.add_argument('--input', metavar='file', 
                     help='input filename', default='BPEE0.gba')
 parser.add_argument('--output', metavar='file', 
@@ -239,5 +239,5 @@ with open(args.output, 'rb+') as rom:
         with open('offsets.txt', 'w') as fout:
                 width = max(map(len, table.keys())) + 1
                 for key in sorted(table.keys()):
-                        fstr = ('{:' + str(width) + '} {:08X}')
-                        fout.write(fstr.format(key + ':', table[key] + 0x08000001)+'\n')
+                        fstr = ('{:' + str(width) + '}0x{:08X}')
+                        fout.write(fstr.format(key, table[key])+'\n')

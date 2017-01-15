@@ -27,15 +27,17 @@ with open('offsets.txt','r') as fin:
         for line in fin:
                 pair = line.split()
                 key=pair[0];
-                key=key[:-1];
                 value=pair[1];
-                value=value[2:]
+                if value[3] is not '0':
+                        value=value[:2]+value[3:]
+                else:
+                        value=value[:2]+value[4:]
                 table[key]=value
 
 with open(args.base_script, 'r') as oldlines:
         fout=open(args.result_script, 'w')
         for line in oldlines:
                 if line.startswith('callasm ##'):
-                        line='callasm 0x8' + table[line[10:-1]]+'\n'
+                        line='callasm ' + table[line[10:-1]]+'\n'
                 fout.write(line)
 
