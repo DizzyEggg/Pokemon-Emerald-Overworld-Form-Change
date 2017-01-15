@@ -240,4 +240,4 @@ with open(args.output, 'rb+') as rom:
                 width = max(map(len, table.keys())) + 1
                 for key in sorted(table.keys()):
                         fstr = ('{:' + str(width) + '}0x{:08X}')
-                        fout.write(fstr.format(key, table[key])+'\n')
+                        fout.write(fstr.format(key, table[key]+1)+'\n')
