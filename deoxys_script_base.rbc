@@ -10,6 +10,7 @@ compare 0x800D 0x0
 if 0x1 goto @finish_deoxys_menu
 compare 0x800D 0x2
 if 0x1 goto @choose_candidate_deoxys
+goto @reaction_prompt
 
 #org @reaction_prompt
 bufferpartypokemon 0x1 0x8004

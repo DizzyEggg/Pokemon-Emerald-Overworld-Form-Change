@@ -11,6 +11,8 @@ compare 0x800D 0x0
 if 0x1 goto @finish_rotom_menu
 compare 0x800D 0x2
 if 0x1 goto @choose_candidate_rotom
+goto @investigation_prompt
+
 #org @investigation_prompt
 bufferpartypokemon 0x1 0x8004
 msgbox @rotom_investigation_string MSG_KEEPOPEN
@@ -39,6 +41,7 @@ special 0xE0
 bufferattack 0x2 0x8003
 msgbox @forgot_special_move_string MSG_KEEPOPEN
 closeonkeypress
+goto @rotom_learn_special_move
 
 #org @rotom_learn_special_move
 callasm 0x1000548
@@ -47,6 +50,7 @@ if 0x1 goto @finish_rotom_menu
 special 0xE2
 compare LASTRESULT 0x4
 if 0x1 goto @rotom_move_delete_prompt
+goto @learned_special_move
 
 #org @learned_special_move
 callasm 0x10005A8
@@ -55,6 +59,7 @@ fanfare 0x101
 msgbox @learn_special_move_string MSG_KEEPOPEN
 waitfanfare
 closeonkeypress
+goto @finish_rotom_menu
 
 #org @finish_rotom_menu
 release
