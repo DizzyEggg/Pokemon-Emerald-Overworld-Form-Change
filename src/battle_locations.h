@@ -10,6 +10,7 @@ u16 var_8005;
 u16 var_8006;
 u16 var_800D_lastresult;
 
+void *routine_to_run_after_graphics;
 u8 slot_in_learnset_table;
 u16 move_to_learn;
 void *b_c;

@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+void run_after_graphics();
+void script_env2_enable(int taskID);
+void script_run(void *scriptLoc);
+
+
 u16 teach_move_in_available_slot(struct pokemon* , u16 move);
 bool bag_add_item(u16 item_id, u8 a);
 char *int_to_str(char *buffer, u8 lvl, u8 a, u8 b);

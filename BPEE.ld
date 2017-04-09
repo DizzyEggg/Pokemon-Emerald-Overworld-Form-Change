@@ -4,6 +4,12 @@ var_8004 = 0x20375E0;
 var_8005 = 0x20375E2;
 var_8006 = 0x20375E4;
 
+/*items*/
+routine_to_run_after_graphics = 0x0203A0F4;
+run_after_graphics = 0x080FD0DC|1;
+script_env2_enable = 0x08098E54|1;
+script_run = 0x08098EF8|1;
+
 /*battle recording*/
 no_of_recorded_bytes = 0x0203C794;
 battle_record = 0x0203BD34;
