@@ -1,2 +1,2 @@
 # Pokemon-Emerald-Overworld-Form-Change
-Collection of non-battle related form(e) change routines for Pokemon Emerald.
+DON't USE THIS BUILD. This is just a backup for restructuring the code
