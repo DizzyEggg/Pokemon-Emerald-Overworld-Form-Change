@@ -1,22 +1,22 @@
 #include "defines.h"
 
+void *shaymin_script();
+
 void run_script_from_item(int taskID)
 {
     script_env2_enable(taskID);
-    script_run((void *)0x89c2000);
+    script_run(shaymin_script);
     task_delete(taskID);
 }
 
+#define SHAYMIN_FLY POKE_TROPIUS
+#define SHAYMIN_LAND POKE_TREECKO
 
 void item_forme_change_handler()
 {
     routine_to_run_after_graphics = (void *) &run_script_from_item;
     run_after_graphics();
 }
-
-#define SHAYMIN_FLY POKE_TROPIUS
-#define SHAYMIN_LAND POKE_TREECKO
-
 
 void shaymin_change_species()
 {
