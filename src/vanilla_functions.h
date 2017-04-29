@@ -7,7 +7,6 @@ void run_after_graphics();
 void script_env2_enable(int taskID);
 void script_run(void *scriptLoc);
 
-
 u16 teach_move_in_available_slot(struct pokemon* , u16 move);
 bool bag_add_item(u16 item_id, u8 a);
 char *int_to_str(char *buffer, u8 lvl, u8 a, u8 b);
@@ -61,7 +60,8 @@ void pal_fade_1(u16 arg1, u16 arg2, u8 arg3, u16 arg4);
 void CpuSet(void* src, void* dst, u32 mode);
 u8 prepare_party_mail_to_give(struct pokemon* poke, u16 item);
 u8 specific_pokerus_check(struct pokemon* poke, u8 caseid);
-
+void* _memcpy(void *dst, void *src, u8 size);
+void* _memset(void *dst, u8 pattern, u8 size);
 
 u32 __udivsi3(u32 numerator, u32 denumerator);
 u32 __umodsi3(u32 numerator, u32 denumerator);
