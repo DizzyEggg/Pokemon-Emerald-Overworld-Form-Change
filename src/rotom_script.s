@@ -51,16 +51,14 @@ rotom_learn_special_move:
 	special 0xE2
 	compare 0x800D 0x4
 	if 0x1 _goto rotom_move_delete_prompt
-//	goto learned_special_move
 
 learned_special_move:
-	callasm rotom_learn_special_move+1
+	callasm rotom_learn_special_move_func+1
 	bufferattack 0x2 0x8006
 	fanfare 0x101
 	msgbox learn_special_move_string MSG_KEEPOPEN
 	waitfanfare
 	closeonkeypress
-//	goto finish_rotom_menu
 
 finish_rotom_menu:
 	release
@@ -100,7 +98,7 @@ delete_move_after_revert:
 	bufferattack 0x2 0x8003
 	special 0xE0
 	setvar 0x8006 0x0
-	callasm rotom_learn_special_move+1
+	callasm rotom_learn_special_move_func+1
 	msgbox left_motor_string MSG_KEEPOPEN
 	closeonkeypress
 	msgbox forgot_special_move_string MSG_KEEPOPEN
@@ -108,7 +106,7 @@ delete_move_after_revert:
 	callasm rotom_determine_special_move+1
 	compare 0x8006 0x0
 	if 0x1 _goto finish_rotom_menu
-	callasm rotom_learn_special_move+1
+	callasm rotom_learn_special_move_func+1
 	goto finish_rotom_menu
 
 revert_for_not_learning_new_move:
