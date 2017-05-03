@@ -190,7 +190,7 @@ void rotom_determine_special_move()
     }
 }
 
-void rotom_learn_special_move()
+void rotom_learn_special_move_func()
 {
     struct pokemon* poke=&party_player[var_8004];
     teach_move_in_available_slot(poke,var_8006);
