@@ -221,16 +221,50 @@ void check_and_fuse_kyurem()
                 glaciate_replacement = MOVE_FREEZE_SHOCK;
             }
             _memcpy(fusee_data,(void *)poke,0x64);
-            //logic to purge reshiram/zekrom
+
             struct pokemon* kyurem = &party_player[kyurem_slot];
             set_attributes(kyurem,ATTR_SPECIES,&target_species);
             calculate_stats_pokekmon(kyurem);
+
             u8 slot_of_glaciate=pokemon_move_slot(kyurem, MOVE_GLACIATE);
             if(slot_of_glaciate!=4)
             {
-                //logic_to_purge move
+                var_8004= kyurem_slot;
+                var_8005= slot_of_glaciate;
+                Special_E0_delete_move();
+
                 teach_move_in_available_slot(kyurem,glaciate_replacement);
             }
+            pokemon_slot_purge(poke);
+        }
+    }
+    else if (species ==POKE_KYUREM_BLACK || species == POKE_KYUREM_WHITE)
+    {
+        if (count_pokemon <6)
+        {
+            target_species = POKE_KYUREM;
+            set_attributes(poke, ATTR_SPECIES,&target_species);
+            calculate_stats_pokekmon(poke);
+
+            u8 slot_of_ice_burn=pokemon_move_slot(poke, MOVE_ICE_BURN);
+            u8 slot_of_freeze_shock=pokemon_move_slot(poke, MOVE_FREEZE_SHOCK);
+            if ((slot_of_ice_burn!=4) || (slot_of_freeze_shock!=4))
+            {
+                if (slot_of_ice_burn!=4)
+                {
+                    var_8005 = slot_of_ice_burn;
+                }
+                else
+                {
+                    var_8005 = slot_of_freeze_shock;
+                }
+                Special_E0_delete_move();
+                teach_move_in_available_slot(poke, MOVE_GLACIATE);
+            }
+            struct pokemon* newpoke = &party_player[count_pokemon];
+            _memcpy((void *)newpoke,fusee_data,0x64);
+            _memset(fusee_data,0,0x64);
+            count_pokemon= count_pokemon+1;
         }
     }
 }
