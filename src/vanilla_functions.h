@@ -8,7 +8,6 @@ void script_env2_enable(int taskID);
 void script_run(void *scriptLoc);
 void pokemon_slot_purge(struct pokemon* poke);
 void Special_E0_delete_move();
-void count_pokemon();
 
 u16 teach_move_in_available_slot(struct pokemon* , u16 move);
 bool bag_add_item(u16 item_id, u8 a);
