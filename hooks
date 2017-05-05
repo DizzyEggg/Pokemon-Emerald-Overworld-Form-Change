@@ -1,3 +1,4 @@
 ##hold item form change
 give_item_to_poke 081B1DB8 2
 take_item_from_poke 081B1E00 1
+revert_hook 080CE0A8 3

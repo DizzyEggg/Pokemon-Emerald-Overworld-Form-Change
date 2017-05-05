@@ -3,6 +3,8 @@
 void *shaymin_script();
 void *hoopa_script();
 void *therain_trio_script();
+void *kyurem_script();
+
 
 void run_script_from_item_shaymin(int taskID)
 {
@@ -28,12 +30,9 @@ void run_script_from_item_therain_trio(int taskID)
 void run_script_from_item_dna_splicers(int taskID)
 {
     script_env2_enable(taskID);
-    script_run(therain_trio_script);
+    script_run(kyurem_script);
     task_delete(taskID);
 }
-
-#define SHAYMIN_FLY POKE_TROPIUS
-#define SHAYMIN_LAND POKE_TREECKO
 
 void item_forme_change_handler_shaymin()
 {
@@ -59,6 +58,9 @@ void item_forme_change_handler_kyurem()
     run_after_graphics();
 }
 
+
+// shaymin //
+
 void shaymin_change_species()
 {
     u8 i=var_8004;
@@ -82,8 +84,7 @@ void check_shaymin()
     }
 }
 
-#define HOOPA_UNBOUND POKE_TROPIUS
-#define HOOPA_CONFINED POKE_TREECKO
+// hoopa //
 
 void check_hoopa()
 {
@@ -108,12 +109,8 @@ void hoopa_change_species()
     calculate_stats_pokekmon(poke);
 }
 
-#define TORNADUS_INCARNATE POKE_WALREIN
-#define TORNADUS_THERIAN POKE_TREECKO
-#define THUNDURUS_INCARNATE POKE_MANECTRIC
-#define THUNDURUS_THERIAN POKE_TORCHIC
-#define LANDORUS_INCARNATE POKE_TROPIUS
-#define LANDORUS_THERIAN POKE_MUDKIP
+
+// Therain trio //
 
 void check_therain_trio()
 {
@@ -160,11 +157,8 @@ void check_therain_trio()
     }
 }
 
-#define POKE_RESHIRAM 990
-#define POKE_ZEKROM 991
-#define POKE_KYUREM 992
-#define POKE_KYUREM_BLACK 993
-#define POKE_KYUREM_WHITE 994
+
+// Kyurem //
 
 u8 kyurem_slot_in_party()
 {
