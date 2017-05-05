@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-
+u8 count_pokemon;
 u16 var_8003;
 u16 var_8004;
 u16 var_8005;
