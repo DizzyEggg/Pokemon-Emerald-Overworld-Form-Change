@@ -230,6 +230,8 @@ void check_and_fuse_kyurem()
                 teach_move_in_available_slot(kyurem,glaciate_replacement);
             }
             pokemon_slot_purge(poke);
+            party_move_up_no_free_slots_in_between();
+            count_pokemon = count_pokemon-1;
         }
     }
     else if (species ==POKE_KYUREM_BLACK || species == POKE_KYUREM_WHITE)
@@ -239,7 +241,6 @@ void check_and_fuse_kyurem()
             target_species = POKE_KYUREM;
             set_attributes(poke, ATTR_SPECIES,&target_species);
             calculate_stats_pokekmon(poke);
-
             u8 slot_of_ice_burn=pokemon_move_slot(poke, MOVE_ICE_BURN);
             u8 slot_of_freeze_shock=pokemon_move_slot(poke, MOVE_FREEZE_SHOCK);
             if ((slot_of_ice_burn!=4) || (slot_of_freeze_shock!=4))
@@ -255,8 +256,7 @@ void check_and_fuse_kyurem()
                 Special_E0_delete_move();
                 teach_move_in_available_slot(poke, MOVE_GLACIATE);
             }
-            struct pokemon* newpoke = &party_player[count_pokemon];
-            _memcpy((void *)newpoke,fusee_data,0x64);
+            _memcpy(&party_player[count_pokemon],fusee_data,0x64);
             _memset(fusee_data,0,0x64);
             count_pokemon= count_pokemon+1;
         }

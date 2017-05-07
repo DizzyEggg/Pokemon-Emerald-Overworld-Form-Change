@@ -19,6 +19,7 @@ var_800D_lastresult = 0x020375F0;
 /* forms handling */
 Special_E0_delete_move = 0x081B9770|1;
 pokemon_slot_purge = 0x08067A8C|1;
+party_move_up_no_free_slots_in_between = 0x080CE90C|1;
 count_pokemon = 0x020244E9;
 
 quit_recorded_battle = 0x080384E4|1;
