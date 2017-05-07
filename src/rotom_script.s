@@ -4,6 +4,7 @@
 
 .include "defines/asm_defines.s"
 .include "defines/xse_commands.s"
+.include "config.s"
 
 rotom_main:
 	lock
@@ -24,7 +25,7 @@ investigation_prompt:
 	if 0x1 _goto finish_rotom_menu
 	preparemsg appliance_choice_string
 	waitmsg
-	multichoice 0xF 0x0 0xD 0x0
+	multichoice ROTOM_FORM_MULTI_CHOICE_BOX_ID 0x0 0xD 0x0
 	compare 0x800D 0x6
 	if 0x1 _goto finish_rotom_menu
 	callasm rotom_change+1

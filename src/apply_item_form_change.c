@@ -20,7 +20,7 @@ void run_script_from_item_hoopa(int taskID)
     task_delete(taskID);
 }
 
-void run_script_from_item_therain_trio(int taskID)
+void run_script_from_item_genies(int taskID)
 {
     script_env2_enable(taskID);
     script_run(therain_trio_script);
@@ -52,9 +52,9 @@ void item_forme_change_handler_dna_splicers()
     run_after_graphics();
 }
 
-void item_forme_change_handler_kyurem()
+void item_forme_change_handler_genie()
 {
-    routine_to_run_after_graphics = (void *) &run_script_from_item_dna_splicers;
+    routine_to_run_after_graphics = (void *) &run_script_from_item_genies;
     run_after_graphics();
 }
 
