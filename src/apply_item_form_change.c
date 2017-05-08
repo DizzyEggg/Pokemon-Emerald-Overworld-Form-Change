@@ -194,6 +194,7 @@ u8 pokemon_move_slot(struct pokemon* poke, u16 move)
 
 void check_and_fuse_kyurem()
 {
+    var_800D_lastresult=0;
     struct pokemon* poke = &party_player[var_8004];
     u16 species = get_attributes(poke,ATTR_SPECIES,0);
     u16 target_species;
@@ -202,7 +203,15 @@ void check_and_fuse_kyurem()
     if(species==POKE_RESHIRAM || species==POKE_ZEKROM)
     {
         u8 kyurem_slot = kyurem_slot_in_party();
-        if(kyurem_slot!=6 && (*((u32 *)fusee_data)==0))
+        if(!*((u32 *)fusee_data))
+        {
+            var_800D_lastresult=3;
+        }
+        else if(kyurem_slot==6)
+        {
+            var_800D_lastresult=2;
+        }
+        else
         {
             if(species==POKE_RESHIRAM)
             {
@@ -233,6 +242,7 @@ void check_and_fuse_kyurem()
             party_move_up_no_free_slots_in_between();
             count_pokemon = count_pokemon-1;
         }
+        var_800D_lastresult=1;
     }
     else if (species ==POKE_KYUREM_BLACK || species == POKE_KYUREM_WHITE)
     {
@@ -259,6 +269,8 @@ void check_and_fuse_kyurem()
             memcpy(&party_player[count_pokemon],fusee_data,0x64);
             memset(fusee_data,0,0x64);
             count_pokemon= count_pokemon+1;
+            var_800D_lastresult=4;
         }
+        var_800D_lastresult=5;
     }
 }
