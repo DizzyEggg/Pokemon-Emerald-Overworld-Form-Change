@@ -1,2 +1,3 @@
-# Pokemon-Emerald-Overworld-Form-Change(New era to EM rom hacking)
-DON't USE THIS BUILD. This is just a backup for restructuring the code
+# Pokemon-Emerald-Overworld-Form-Change
+
+Info & instructions to setup: https://www.pokecommunity.com/showthread.php?p=9547750
