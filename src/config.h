@@ -6,61 +6,61 @@
 #define ALL_POKES       412     //number of all pokemon
 #define ALL_ITEMS       377     //number of all items
 #define NUM_OF_EVOS     5       //number of evolutions per pokemon
-#define SAVE_FUSEE 0x2060000
+#define SAVE_FUSEE 0x0          //offset to for saving the fused reshiram
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       GIRATINA CONFIG                                ////
 //////////////////////////////////////////////////////////////////////////////
-#define POKE_GIRATINA 1250
-#define POKE_GIRATINA_O 1251
+#define POKE_GIRATINA 3000
+#define POKE_GIRATINA_O 3001
 
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       SHAYMIN CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
-#define SHAYMIN_FLY POKE_TROPIUS
-#define SHAYMIN_LAND POKE_TREECKO
+#define SHAYMIN_FLY 3002
+#define SHAYMIN_LAND 3003
 
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       HOOPA CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
-#define HOOPA_UNBOUND POKE_MANECTRIC
-#define HOOPA_CONFINED POKE_POOCHYENA
+#define HOOPA_UNBOUND 3004
+#define HOOPA_CONFINED 3005
 
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       FORCES OF NATURE CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
-#define TORNADUS_INCARNATE POKE_WALREIN
-#define TORNADUS_THERIAN POKE_TREECKO
-#define THUNDURUS_INCARNATE POKE_MANECTRIC
-#define THUNDURUS_THERIAN POKE_TORCHIC
-#define LANDORUS_INCARNATE POKE_TROPIUS
-#define LANDORUS_THERIAN POKE_MUDKIP
+#define TORNADUS_INCARNATE 3006
+#define TORNADUS_THERIAN 3007
+#define THUNDURUS_INCARNATE 3008
+#define THUNDURUS_THERIAN 3009
+#define LANDORUS_INCARNATE 3010
+#define LANDORUS_THERIAN 3011
 
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       KYUREM CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
-#define POKE_RESHIRAM POKE_POOCHYENA
-#define POKE_ZEKROM POKE_WURMPLE
-#define POKE_KYUREM POKE_TREECKO
-#define POKE_KYUREM_BLACK POKE_BEAUTIFLY
-#define POKE_KYUREM_WHITE POKE_SHIFTRY
+#define POKE_RESHIRAM 3012
+#define POKE_ZEKROM 3013
+#define POKE_KYUREM 3014
+#define POKE_KYUREM_BLACK 3015
+#define POKE_KYUREM_WHITE 3016
 
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       ARCEUS CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
-#define POKE_ARCEUS 1300
+#define POKE_ARCEUS 3017
 enum arceus_formes_idx {
-    POKE_ARCEUS_FIGHTING = 1301,  // This a enum. The subsequent value of indexes will be 1302, 1303 etc.
+    POKE_ARCEUS_FIGHTING = 3018,  // This a enum. The subsequent value of indexes will be 1302, 1303 etc.
     POKE_ARCEUS_FLYING,
     POKE_ARCEUS_POISON,
     POKE_ARCEUS_GROUND,
@@ -83,9 +83,9 @@ enum arceus_formes_idx {
 ////                       SILVALLY CONFIG                                ////
 //////////////////////////////////////////////////////////////////////////////
 #define ABILITY_RKS_SYSTEM 240
-#define POKE_SILVALLY 1340
+#define POKE_SILVALLY 3040
 enum silvally_forms_idx {
-    POKE_SILVALLY_FIGHTING = 1341,
+    POKE_SILVALLY_FIGHTING = 3041,
     POKE_SILVALLY_FLYING,
     POKE_SILVALLY_POISON,
     POKE_SILVALLY_GROUND,
@@ -107,9 +107,9 @@ enum silvally_forms_idx {
 //////////////////////////////////////////////////////////////////////////////
 ////                       GENESECT CONFIG                                ////
 //////////////////////////////////////////////////////////////////////////////
-#define POKE_GENESECT 1380
+#define POKE_GENESECT 3100
 enum genesect_formes{
-    POKE_GENESECT_DOUSE = 1381,
+    POKE_GENESECT_DOUSE = 3101,
     POKE_GENESECT_BURN,
     POKE_GENESECT_CHILL,
     POKE_GENESECT_SHOCK
@@ -127,11 +127,11 @@ enum drives
 //////////////////////////////////////////////////////////////////////////////
 ////                        ROTOM CONFIG                                  ////
 //////////////////////////////////////////////////////////////////////////////
-#define POKE_ROTOM 1400
+#define POKE_ROTOM 3110
 
 enum rotom_forms
 {
-    POKE_ROTOM_HEAT=1401,
+    POKE_ROTOM_HEAT=3111,
     POKE_ROTOM_WASH,
     POKE_ROTOM_FROST,
     POKE_ROTOM_FAN,
@@ -143,7 +143,7 @@ enum rotom_forms
 //////////////////////////////////////////////////////////////////////////////
 enum deoxys_forms
 {
-    POKE_DEOXYS_ATTACK=1450,
+    POKE_DEOXYS_ATTACK=3120,
     POKE_DEOXYS_DEFENSE,
     POKE_DEOXYS_SPEED,
 };
