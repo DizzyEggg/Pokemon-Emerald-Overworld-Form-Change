@@ -6,7 +6,7 @@
 #define ALL_POKES       412     //number of all pokemon
 #define ALL_ITEMS       377     //number of all items
 #define NUM_OF_EVOS     5       //number of evolutions per pokemon
-#define SAVE_FUSEE 0x2090000
+#define SAVE_FUSEE 0x2060000
 
 //////////////////////////////////////////////////////////////////////////////
 ////                       GIRATINA CONFIG                                ////

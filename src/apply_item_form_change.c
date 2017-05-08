@@ -214,7 +214,7 @@ void check_and_fuse_kyurem()
                 target_species = POKE_KYUREM_BLACK;
                 glaciate_replacement = MOVE_FREEZE_SHOCK;
             }
-            _memcpy(fusee_data,(void *)poke,0x64);
+            memcpy(fusee_data,(void *)poke,0x64);
 
             struct pokemon* kyurem = &party_player[kyurem_slot];
             set_attributes(kyurem,ATTR_SPECIES,&target_species);
@@ -256,8 +256,8 @@ void check_and_fuse_kyurem()
                 Special_E0_delete_move();
                 teach_move_in_available_slot(poke, MOVE_GLACIATE);
             }
-            _memcpy(&party_player[count_pokemon],fusee_data,0x64);
-            _memset(fusee_data,0,0x64);
+            memcpy(&party_player[count_pokemon],fusee_data,0x64);
+            memset(fusee_data,0,0x64);
             count_pokemon= count_pokemon+1;
         }
     }
